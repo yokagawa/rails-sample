@@ -1,0 +1,7 @@
+- hosts: vagrant
+  roles:
+    - common
+    - mysql
+    - nginx
+    - ruby
+    - app

@@ -1,0 +1,18 @@
+- name: rbenvチェックアウト
+  git: repo=https://github.com/sstephenson/rbenv.git
+       dest=/home/vagrant/.rbenv/
+- name: rbenvプラグインチェックアウト
+  git: repo=https://github.com/sstephenson/ruby-build.git
+       dest=/home/vagrant/.rbenv/plugins/ruby-build/
+- name: 権限所有者変更
+  file: path=/home/vagrant/.rbenv owner=vagrant state=directory recurse=yes
+- name: .bash_profileコピー
+  copy: src=./files/.bash_profile dest=~/.bash_profile
+- name: rubyバージョンチェック
+  stat: path=/home/vagrant/.rbenv/shims/ruby
+  register: ruby_installed
+- name: rubyインストール
+  shell: /bin/bash -lc "rbenv install -v 2.1.5 && rbenv rehash && rbenv global 2.1.5"
+  when: ruby_installed.stat.md5 is not defined
+- name: gem bundler インストール
+  gem: name=bundle state=latest executable=/home/vagrant/.rbenv/shims/gem user_install=False

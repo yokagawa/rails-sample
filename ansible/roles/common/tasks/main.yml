@@ -1,0 +1,11 @@
+- name: パッケージインストール
+  become: yes
+  apt: pkg={{item}} force=yes update_cache=yes
+  with_items:
+    - git
+    - node
+    - libssl-dev
+    - libreadline-dev
+    - zlib1g-dev
+    - libmysqld-dev
+    - python-dev

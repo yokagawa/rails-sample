@@ -1,0 +1,7 @@
+- name: nginxインストール
+  become: yes
+  apt: pkg=nginx force=yes update_cache=yes
+- name: rails用設定ファイルコピー
+  become: yes
+  template: src=../templates/rails.conf.j2 dest=/etc/nginx/conf.d/rails.conf
+  notify: restart nginx

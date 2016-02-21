@@ -1,0 +1,3 @@
+- name: MySQLサーバインストール
+  become: yes
+  apt: pkg=mysql-server force=yes update_cache=yes
