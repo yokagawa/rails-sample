@@ -16,3 +16,5 @@
   when: ruby_installed.stat.md5 is not defined
 - name: gem bundler インストール
   gem: name=bundle state=latest executable=/home/vagrant/.rbenv/shims/gem user_install=False
+- name: gem rails インストール
+  gem: name=rails state=latest executable=/home/vagrant/.rbenv/shims/gem user_install=False
