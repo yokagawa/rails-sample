@@ -1,12 +1,16 @@
 - name: bundle isntall実行
   bundler: state=present gemfile=/srv/src/Gemfile executable=~/.rbenv/shims/bundle extra_args="--path /srv/src/.bundle/"
 - name: db create
-  shell: /bin/bash -lc "rake db:create"
+  shell: "/home/vagrant/.rbenv/shims/bundle exec rake db:create"
   args:
     chdir: /srv/src/app
 - name: db migration
-  shell: /bin/bash -lc "rake db:migrate"
+  shell: "/home/vagrant/.rbenv/shims/bundle exec rake db:migrate"
   args:
     chdir: /srv/src/app
 - name: unicorn pid, sock格納ディレクトリ作成
   file: path=/tmp/run state=directory owner=vagrant group=vagrant mode=0777
+- name: unicorn start
+  shell: "/home/vagrant/.rbenv/shims/bundle exec rake unicorn:start"
+  args:
+    chdir: /srv/src/app
