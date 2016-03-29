@@ -35,11 +35,11 @@ gem 'unicorn'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'byebug'
   gem 'pry-rails'
   gem 'pry-doc'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
+  gem 'rspec-rails', '~> 3.0.0'
 end
 
 group :development do
