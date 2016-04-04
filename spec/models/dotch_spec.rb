@@ -1,5 +1,10 @@
 require "rails_helper"
 
 RSpec.describe Dotch, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "バリデーション" do
+      it "サンプル" do
+      dotch = create(:dotch)
+      expect(dotch.id).to eq(2);
+    end
+  end
 end
